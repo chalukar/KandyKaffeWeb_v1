@@ -1,0 +1,6 @@
+@KandyKaffe.Services.CouponAPI_HostAddress = http://localhost:5063
+
+GET {{KandyKaffe.Services.CouponAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

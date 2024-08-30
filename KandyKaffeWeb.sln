@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{659FF8E6-587C-46D2-BA0F-9F56DE556184}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{82D5CB42-5B76-46A0-A41C-0553AE240F5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{A1B6BFB7-ADF9-4F0F-A6E5-897B498B8EE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{78FD6FFB-7DC3-4F1A-AD59-65D3CA70E30F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KandyKaffe.Services.CouponAPI", "KandyKaffe.Services.CouponAPI\KandyKaffe.Services.CouponAPI.csproj", "{D8D13676-0285-4BB5-940C-5CA41E4B708E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8D13676-0285-4BB5-940C-5CA41E4B708E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8D13676-0285-4BB5-940C-5CA41E4B708E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8D13676-0285-4BB5-940C-5CA41E4B708E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8D13676-0285-4BB5-940C-5CA41E4B708E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D8D13676-0285-4BB5-940C-5CA41E4B708E} = {78FD6FFB-7DC3-4F1A-AD59-65D3CA70E30F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {163F68B5-DA6C-449E-BE47-E6766A930276}
+	EndGlobalSection
+EndGlobal
