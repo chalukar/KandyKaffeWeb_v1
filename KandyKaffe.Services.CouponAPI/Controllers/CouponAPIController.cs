@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure;
 using KandyKaffe.Services.CouponAPI.Data;
 using KandyKaffe.Services.CouponAPI.Models;
 using KandyKaffe.Services.CouponAPI.Models.Dto;
@@ -30,7 +29,7 @@ namespace KandyKaffe.Services.CouponAPI.Controllers
                 _response.Result = _mapper.Map<IEnumerable<CouponDto>>(objList);
             }
             catch (Exception ex)
-            { 
+            {
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
@@ -43,7 +42,7 @@ namespace KandyKaffe.Services.CouponAPI.Controllers
         {
             try
             {
-                Coupon obj = _db.Coupons.First(u=>u.CouponId == id);
+                Coupon obj = _db.Coupons.First(u => u.CouponId == id);
                 _response.Result = _mapper.Map<CouponDto>(obj);
             }
             catch (Exception ex)
@@ -113,7 +112,7 @@ namespace KandyKaffe.Services.CouponAPI.Controllers
         {
             try
             {
-                Coupon obj = _db.Coupons.First(u=>u.CouponId == id);
+                Coupon obj = _db.Coupons.First(u => u.CouponId == id);
                 _db.Coupons.Remove(obj);
                 _db.SaveChanges();
             }

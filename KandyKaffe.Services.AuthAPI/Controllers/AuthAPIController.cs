@@ -1,6 +1,5 @@
 ﻿using KandyKaffe.Services.AuthAPI.Models.Dto;
 using KandyKaffe.Services.AuthAPI.Service.IService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KandyKaffe.Services.AuthAPI.Controllers
@@ -14,7 +13,7 @@ namespace KandyKaffe.Services.AuthAPI.Controllers
         public AuthAPIController(IAuthService authService)
         {
             _authService = authService;
-            _response = new ();
+            _response = new();
         }
 
         [HttpPost("register")]

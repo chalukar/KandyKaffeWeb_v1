@@ -13,9 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{78
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KandyKaffe.Services.CouponAPI", "KandyKaffe.Services.CouponAPI\KandyKaffe.Services.CouponAPI.csproj", "{D8D13676-0285-4BB5-940C-5CA41E4B708E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KandyKaffe.Web", "KandyKaffe.Web\KandyKaffe.Web.csproj", "{B5140A65-DD31-4033-A971-569D3E8021EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KandyKaffe.Services.AuthAPI", "KandyKaffe.Services.AuthAPI\KandyKaffe.Services.AuthAPI.csproj", "{951F30A4-DE05-4CDD-9B95-0569F0DE4AB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KandyKaffe.Services.AuthAPI", "KandyKaffe.Services.AuthAPI\KandyKaffe.Services.AuthAPI.csproj", "{951F30A4-DE05-4CDD-9B95-0569F0DE4AB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KandyKaffeWeb_", "KandyKaffeWeb_\KandyKaffeWeb_.csproj", "{4C362795-3730-406F-9C41-8A680EA3C61A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,22 +27,22 @@ Global
 		{D8D13676-0285-4BB5-940C-5CA41E4B708E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8D13676-0285-4BB5-940C-5CA41E4B708E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8D13676-0285-4BB5-940C-5CA41E4B708E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5140A65-DD31-4033-A971-569D3E8021EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5140A65-DD31-4033-A971-569D3E8021EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5140A65-DD31-4033-A971-569D3E8021EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5140A65-DD31-4033-A971-569D3E8021EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{951F30A4-DE05-4CDD-9B95-0569F0DE4AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{951F30A4-DE05-4CDD-9B95-0569F0DE4AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{951F30A4-DE05-4CDD-9B95-0569F0DE4AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{951F30A4-DE05-4CDD-9B95-0569F0DE4AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C362795-3730-406F-9C41-8A680EA3C61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C362795-3730-406F-9C41-8A680EA3C61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C362795-3730-406F-9C41-8A680EA3C61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C362795-3730-406F-9C41-8A680EA3C61A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D8D13676-0285-4BB5-940C-5CA41E4B708E} = {78FD6FFB-7DC3-4F1A-AD59-65D3CA70E30F}
-		{B5140A65-DD31-4033-A971-569D3E8021EC} = {659FF8E6-587C-46D2-BA0F-9F56DE556184}
 		{951F30A4-DE05-4CDD-9B95-0569F0DE4AB4} = {78FD6FFB-7DC3-4F1A-AD59-65D3CA70E30F}
+		{4C362795-3730-406F-9C41-8A680EA3C61A} = {659FF8E6-587C-46D2-BA0F-9F56DE556184}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {163F68B5-DA6C-449E-BE47-E6766A930276}

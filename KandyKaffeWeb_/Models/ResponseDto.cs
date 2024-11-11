@@ -1,4 +1,4 @@
-﻿namespace KandyKaffe.Services.CouponAPI.Models.Dto
+﻿namespace KandyKaffeWeb_.Models
 {
     public class ResponseDto
     {

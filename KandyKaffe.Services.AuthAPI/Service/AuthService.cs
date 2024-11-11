@@ -3,7 +3,6 @@ using KandyKaffe.Services.AuthAPI.Models;
 using KandyKaffe.Services.AuthAPI.Models.Dto;
 using KandyKaffe.Services.AuthAPI.Service.IService;
 using Microsoft.AspNetCore.Identity;
-using System.Data;
 
 namespace KandyKaffe.Services.AuthAPI.Service
 {
@@ -107,7 +106,9 @@ namespace KandyKaffe.Services.AuthAPI.Service
                     return result.Errors.FirstOrDefault().Description;
                 }
 
-            }catch (Exception ex) { 
+            }
+            catch (Exception ex)
+            {
             }
             return "Error Encountered";
         }
