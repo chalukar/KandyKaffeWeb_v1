@@ -2,12 +2,14 @@
 using KandyKaffe.Services.CouponAPI.Data;
 using KandyKaffe.Services.CouponAPI.Models;
 using KandyKaffe.Services.CouponAPI.Models.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KandyKaffe.Services.CouponAPI.Controllers
 {
     [Route("api/coupon")]
     [ApiController]
+    [Authorize]
     public class CouponAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
