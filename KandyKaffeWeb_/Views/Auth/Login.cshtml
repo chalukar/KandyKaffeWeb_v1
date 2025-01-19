@@ -31,21 +31,21 @@
         <div class="card-body py-5 px-md-5">
 
             <div class="row d-flex justify-content-center">
-                <div class="row text-center">
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                </div>
                 <div class="col-lg-8">
                     <h2 class="fw-bold mb-5">Login</h2>
                     <form method="post">
                         <!-- Email input -->
                         <div data-mdb-input-init class="form-outline mb-4">
+                            <span asp-validation-for="UserName" class="text-danger"></span>
                             <input asp-for="UserName" class="form-control" id="form3Example3" placeholder="Username..." />
+                            
                             @* <input type="email" id="form3Example3" class="form-control" />
                             <label class="form-label" for="form3Example3">Email address</label> *@
                         </div>
 
                         <!-- Password input -->
                         <div data-mdb-input-init class="form-outline mb-4">
+                            <span asp-validation-for="UserName" class="text-danger"></span>
                             <input asp-for="Password" class="form-control" id="form3Example4" placeholder="Password..." />
                            @*  <input type="password" id="form3Example4" class="form-control" />
                             <label class="form-label" for="form3Example4">Password</label> *@
@@ -91,3 +91,6 @@
     </div>
 </section>
 <!-- Section: Design Block -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
