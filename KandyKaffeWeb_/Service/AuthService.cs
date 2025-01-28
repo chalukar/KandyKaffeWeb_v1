@@ -21,7 +21,7 @@ namespace KandyKaffeWeb_.Service
                 ApiType = ApiType.POST,
                 Data = registrationRequestsDto,
                 Url = SD.AuthAPIBase + "/api/auth/AssignRole"
-            });
+            },withBearer:false);
         }
 
         public async Task<ResponseDto?> LoginAsync(LoginRequestDto loginRequestDto)
@@ -31,7 +31,7 @@ namespace KandyKaffeWeb_.Service
                 ApiType = ApiType.POST,
                 Data = loginRequestDto,
                 Url = SD.AuthAPIBase + "/api/auth/login"
-            });
+            }, withBearer: false);
         }
 
         public async Task<ResponseDto?> RegisterAsync(RegistrationRequestsDto registrationRequestsDto)
@@ -41,7 +41,7 @@ namespace KandyKaffeWeb_.Service
                 ApiType = ApiType.POST,
                 Data = registrationRequestsDto,
                 Url = SD.AuthAPIBase + "/api/auth/register"
-            });
+            }, withBearer: false);
         }
     }
 }
