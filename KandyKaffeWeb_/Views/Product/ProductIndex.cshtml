@@ -24,13 +24,19 @@
 						Product ID
 					</th>
 					<th>
+						Category
+					</th>
+					<th>
 						Product Name
 					</th>
 					<th>
 						Description
 					</th>
 					<th>
-						Price
+						Price ($)
+					</th>
+					<th>
+						Status
 					</th>
 				</tr>
 			</thead>
@@ -39,14 +45,25 @@
 				{
 					<tr>
 						<td>@item.ProductId</td>
+						<td>@item.CategoryName</td>
 						<td>@item.Name</td>
 						<td>@item.Description</td>
-						<td>@((item.Price).ToString("c"))</td>
+						<td>@item.Price</td>
+						<td>
+							@if(item.IsActive)
+							{
+								<span class="text-success">Active</span>
+							}
+							else
+							{
+								<span class="text-danger">Inactive</span>
+							}
+						</td>
 						<td>
 							<a class="btn btn-success" asp-action="ProductEdit" asp-route-productId="@item.ProductId">
 								<i class="bi bi-pencil-square"></i>
 							</a>
-							<a class="btn btn-danger" asp-action="ProductDelete" asp-route-couponId="@item.ProductId">
+							<a asp-action="ProductDelete" asp-route-productId="@item.ProductId" class="btn btn-danger">
 								<i class="bi bi-trash"></i>
 							</a>
 						</td>

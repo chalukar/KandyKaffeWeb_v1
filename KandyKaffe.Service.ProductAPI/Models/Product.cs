@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KandyKaffe.Service.ProductAPI.Models
@@ -18,7 +19,7 @@ namespace KandyKaffe.Service.ProductAPI.Models
         // Foreign key from Category API
         public int CategoryId { get; set; }
         public string ImageUrl { get; set; }
-
         public bool IsActive { get; set; }
-    }
+
+	}
 }

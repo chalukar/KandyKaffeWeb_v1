@@ -2,7 +2,7 @@
 using KandyKaffe.Service.ProductAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace KandyKaffe.Services.Catelog.Data
+namespace KandyKaffe.Services.ProductAPI.Data
 {
     public class AppDbContext : DbContext
     {

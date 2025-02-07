@@ -1,17 +1,18 @@
 ﻿using AutoMapper;
 using KandyKaffe.Service.ProductAPI.Models;
 using KandyKaffe.Service.ProductAPI.Models.Dto;
-using KandyKaffe.Services.Catelog.Data;
+using KandyKaffe.Services.ProductAPI.Data;
 using KandyKaffe.Services.ProductAPI.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace KandyKaffe.Services.ProductAPI.Controllers
 {
     [Route("api/product")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ProductAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -25,13 +26,13 @@ namespace KandyKaffe.Services.ProductAPI.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto GetAll()
         {
             try
             {
                 IEnumerable<Product> objList = _db.Products.ToList();
-                _response.Result = _mapper.Map<IEnumerable<ProductDto>>(objList);
+				_response.Result = _mapper.Map<IEnumerable<ProductDto>>(objList);
             }
             catch (Exception ex)
             {
@@ -43,7 +44,7 @@ namespace KandyKaffe.Services.ProductAPI.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        //[Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Get(int id)
         {
             try
@@ -78,7 +79,7 @@ namespace KandyKaffe.Services.ProductAPI.Controllers
         //}
 
         [HttpPost]
-        //[Authorize(Roles ="ADMIN")]
+        [Authorize(Roles ="ADMIN")]
         public ResponseDto Post([FromBody] ProductDto ProductDto)
         {
             try
@@ -91,7 +92,10 @@ namespace KandyKaffe.Services.ProductAPI.Controllers
                 }
 
                 Product obj = _mapper.Map<Product>(ProductDto);
-                _db.Products.Add(obj);
+                //obj.CategoryId = ProductDto.CategoryId;
+
+
+				_db.Products.Add(obj);
                 _db.SaveChanges();
                 _response.Result = _mapper.Map<ProductDto>(obj);
             }
@@ -104,7 +108,7 @@ namespace KandyKaffe.Services.ProductAPI.Controllers
         }
 
         [HttpPut]
-        //[Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Put([FromBody] ProductDto ProductDto)
         {
             try
@@ -124,7 +128,7 @@ namespace KandyKaffe.Services.ProductAPI.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        //[Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Delete(int id)
         {
             try

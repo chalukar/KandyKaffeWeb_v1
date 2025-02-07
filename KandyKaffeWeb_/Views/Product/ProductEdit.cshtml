@@ -1,10 +1,9 @@
-﻿
-@model ProductDto
+﻿@model ProductDto
 
-<form asp-action="ProductCreate">
+<form asp-action="Productedit">
     <br />
     <div class="container border p-3">
-        <h1 class="text text-center">Create Product</h1>
+        <h1 class="text text-center">Edit Product</h1>
 
         <hr />
         <div class="row">
@@ -53,7 +52,7 @@
                 <input asp-for="IsActive" type="checkbox" class="form-check-input" style="transform: scale(1.5);" />
                 <span asp-validation-for="IsActive" class="text-danger"></span>
             </div>
- 
+
 
             <div class="col-5 offset-2">
 
