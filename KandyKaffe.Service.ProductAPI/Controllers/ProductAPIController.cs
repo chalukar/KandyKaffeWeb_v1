@@ -12,7 +12,7 @@ namespace KandyKaffe.Services.ProductAPI.Controllers
 {
     [Route("api/product")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ProductAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -26,7 +26,7 @@ namespace KandyKaffe.Services.ProductAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
+        //[Authorize(Roles = "ADMIN")]
         public ResponseDto GetAll()
         {
             try
@@ -44,7 +44,7 @@ namespace KandyKaffe.Services.ProductAPI.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        [Authorize(Roles = "ADMIN")]
+        //[Authorize(Roles = "ADMIN")]
         public ResponseDto Get(int id)
         {
             try
