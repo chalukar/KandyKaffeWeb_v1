@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using KandyKaffe.Service.ProductAPI.Models;
-using KandyKaffe.Service.ProductAPI.Models.Dto;
 using KandyKaffe.Services.ProductAPI.Data;
+using KandyKaffe.Services.ProductAPI.Models;
 using KandyKaffe.Services.ProductAPI.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

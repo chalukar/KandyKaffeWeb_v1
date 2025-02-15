@@ -1,5 +1,5 @@
 ﻿
-using KandyKaffe.Service.ProductAPI.Models;
+using KandyKaffe.Services.ProductAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace KandyKaffe.Services.ProductAPI.Data

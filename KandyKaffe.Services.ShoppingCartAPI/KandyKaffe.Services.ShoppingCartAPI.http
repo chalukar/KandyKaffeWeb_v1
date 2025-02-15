@@ -1,0 +1,6 @@
+@KandyKaffe.Services.ShoppingCartAPI_HostAddress = http://localhost:5244
+
+GET {{KandyKaffe.Services.ShoppingCartAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

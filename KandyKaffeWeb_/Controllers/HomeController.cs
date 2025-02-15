@@ -1,5 +1,6 @@
 using KandyKaffeWeb_.Models;
 using KandyKaffeWeb_.Service.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -21,7 +22,6 @@ namespace KandyKaffeWeb_.Controllers
 
         public async Task<IActionResult> Index()
         {
-			List<CategoryDto> categories = new List<CategoryDto>();
 			List<ProductDto>? productList = new();
 			List<CategoryDto>? categoryList = new();
 			ResponseDto productResponseDto = await _productService.GetAllProductAsync();
@@ -49,6 +49,51 @@ namespace KandyKaffeWeb_.Controllers
 			return View(productList);
 		}
 
+        [Authorize]
+        public async Task<IActionResult> ProductDetails(int productId)
+        {
+            CategoryDto categoryModel = new();
+            ProductDto? productModel = new(); 
+            
+            ResponseDto productResponseDto = await _productService.GetProductByIdAsync(productId);
+
+            if (productResponseDto != null && productResponseDto.IsSuccess)
+            {
+                productModel = JsonConvert.DeserializeObject<ProductDto>(Convert.ToString(productResponseDto.Result));
+                
+                if(productModel !=null)
+                {
+                    int categoryId = productModel.CategoryId; // Extract categoryId
+
+                    ResponseDto categoryResponseDto = await _categoryService.GetCategoryByIdAsync(categoryId);
+
+                    if (categoryResponseDto != null && categoryResponseDto.IsSuccess)
+                    {
+                        categoryModel = JsonConvert.DeserializeObject<CategoryDto>(Convert.ToString(categoryResponseDto.Result));
+                        if (categoryModel != null)
+                        {
+                            productModel.CategoryName = categoryModel.CategoryName; // Assign category name to product
+                        }
+                    }
+                    else
+                    {
+                        TempData["error"] = categoryResponseDto?.Message ?? "Category details not found.";
+                    }
+                }
+                else
+                {
+                    TempData["error"] = "Product details not found.";
+                    return RedirectToAction("Index"); // Redirect to another page if product is null
+                }
+            }
+            else
+            {
+                TempData["error"] = productResponseDto?.Message ?? "Failed to fetch product details.";
+                return RedirectToAction("Index");
+            }
+
+            return View(productModel);
+        }
         public IActionResult Privacy()
         {
             return View();

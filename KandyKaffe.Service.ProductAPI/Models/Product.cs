@@ -1,8 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace KandyKaffe.Service.ProductAPI.Models
+namespace KandyKaffe.Services.ProductAPI.Models
 {
     public class Product
     {

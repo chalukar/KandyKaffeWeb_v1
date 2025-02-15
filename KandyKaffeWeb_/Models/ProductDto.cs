@@ -19,5 +19,9 @@ namespace KandyKaffeWeb_.Models
 		public string ImageUrl { get; set; }
         [Required(ErrorMessage = "Please confirm if the product is active.")]
         public bool IsActive { get; set; }
+
+        [Range(1, 100, ErrorMessage = "Count must be between 1 and 100.")]
+        public int Count { get; set; } = 1;
     }
+
 }
