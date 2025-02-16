@@ -20,7 +20,7 @@ namespace KandyKaffeWeb_.Controllers
         }
         public async Task<IActionResult> ProductIndex()
         {
-            List<CategoryDto> categories = new List<CategoryDto>();
+            //List<CategoryDto> categories = new List<CategoryDto>();
             List<ProductDto>? productList = new();
             List<CategoryDto>? categoryList = new();
 			ResponseDto productResponseDto = await _productService.GetAllProductAsync();

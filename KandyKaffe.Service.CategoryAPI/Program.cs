@@ -1,7 +1,7 @@
 using AutoMapper;
 using KandyKaffe.Services.CategoryAPI;
+using KandyKaffe.Services.CategoryAPI.Extensions;
 using KandyKaffe.Services.Categoty.Data;
-using KandyKaffe.Services.ProductAPI.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

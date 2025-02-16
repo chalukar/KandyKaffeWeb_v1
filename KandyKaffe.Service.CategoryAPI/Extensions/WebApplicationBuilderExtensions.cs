@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace KandyKaffe.Services.ProductAPI.Extensions
+namespace KandyKaffe.Services.CategoryAPI.Extensions
 {
     public static class WebApplicationBuilderExtensions
     {
