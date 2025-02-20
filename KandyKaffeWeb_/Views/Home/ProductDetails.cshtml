@@ -1,5 +1,6 @@
 ﻿@model ProductDto
 <form method="post">
+    <input asp-for="ProductId" hidden />
     <div class="container mt-5">
         <div class="row">
             <!-- Product Image -->
@@ -11,6 +12,7 @@
 
             <!-- Product Details -->
             <div class="col-md-6">
+                
                 <h4 class="mt-2">@Model.Name</h4>
                 <p class="text-muted">Category: <strong>@Model.CategoryName</strong></p>
                 <p class="ingredients"><strong>Description:</strong>@Html.Raw(Model.Description)</p>

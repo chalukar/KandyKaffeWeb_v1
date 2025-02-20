@@ -9,7 +9,7 @@ namespace KandyKaffe.Services.CouponAPI.Controllers
 {
     [Route("api/coupon")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class CouponAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -23,7 +23,6 @@ namespace KandyKaffe.Services.CouponAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
         public ResponseDto GetAll()
         {
             try
@@ -41,7 +40,6 @@ namespace KandyKaffe.Services.CouponAPI.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        [Authorize(Roles = "ADMIN")]
         public ResponseDto Get(int id)
         {
             try
@@ -59,11 +57,11 @@ namespace KandyKaffe.Services.CouponAPI.Controllers
 
         [HttpGet]
         [Route("GetByCode/{code}")]
-        [Authorize(Roles = "ADMIN")]
         public ResponseDto GetByCode(string code)
         {
             try
             {
+                
                 Coupon obj = _db.Coupons.First(u => u.CouponCode.ToLower() == code.ToLower());
                 _response.Result = _mapper.Map<CouponDto>(obj);
             }

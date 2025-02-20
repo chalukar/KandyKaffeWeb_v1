@@ -58,7 +58,7 @@ namespace KandyKaffeWeb_.Service
                         message.Method = HttpMethod.Get;
                         break;
                 }
-
+                
                 apiResponse = await client.SendAsync(message);
 
                 switch (apiResponse.StatusCode)
@@ -74,6 +74,14 @@ namespace KandyKaffeWeb_.Service
 
                     case HttpStatusCode.InternalServerError:
                         return new() { IsSuccess = false, Message = "Internal Server Error" };
+
+                    case HttpStatusCode.BadRequest:
+                        var badRequestContent = await apiResponse.Content.ReadAsStringAsync();
+                        return new() { IsSuccess = false, Message = "Bad Request" };
+
+                    //case HttpStatusCode.BadRequest:
+                    //    var badRequestContent = await apiResponse.Content.ReadAsStringAsync();
+                    //    return new() { IsSuccess = false, Message = $"Bad Request: {badRequestContent}" };
 
                     default:
                         var apiContent = await apiResponse.Content.ReadAsStringAsync();

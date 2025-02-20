@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
-using KandyKaffe.Services.ShoppingCartAPI.Data;
-using KandyKaffe.Services.ShoppingCartAPI.Models;
-using KandyKaffe.Services.ShoppingCartAPI.Models.Dto;
-using KandyKaffe.Services.ShoppingCartAPI.Service.IService;
+using KandyKaffe.Services.CartAPI.Data;
+using KandyKaffe.Services.CartAPI.Models;
+using KandyKaffe.Services.CartAPI.Models.Dto;
+using KandyKaffe.Services.CartAPI.Service.IService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.PortableExecutable;
 
-namespace KandyKaffe.Services.ShoppingCartAPI.Controllers
+namespace KandyKaffe.Services.CartAPI.Controllers
 {
     [Route("api/cart")]
     [ApiController]
@@ -19,7 +18,7 @@ namespace KandyKaffe.Services.ShoppingCartAPI.Controllers
         private IMapper _mapper;
         private IProductService _productService;
         private ICouponService _couponService;
-        public CartAPIController(AppDbContext db, IMapper mapper , IProductService productService, ICouponService couponService)
+        public CartAPIController(AppDbContext db, IMapper mapper, IProductService productService, ICouponService couponService)
         {
             _db = db;
             _mapper = mapper;
@@ -60,69 +59,30 @@ namespace KandyKaffe.Services.ShoppingCartAPI.Controllers
 
                 _response.Result = cart;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 _response.IsSuccess = false;
                 _response.Message = ex.Message;
             }
             return _response;
         }
 
-
-        [HttpPost("ApplyCoupon")]
-        public async Task<object> ApplyCoupon([FromBody] CartDto cartDto)
-        {
-            try
-            {
-                var cartFromDb = await _db.CartHeaders.FirstAsync(u => u.UserId == cartDto.CartHeader.UserId);
-                cartFromDb.CouponCode = cartDto.CartHeader.CouponCode;
-                _db.CartHeaders.Update(cartFromDb);
-                await _db.SaveChangesAsync();
-                _response.Result = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.ToString();
-            }
-            return _response;
-        }
-
-        [HttpPost("RemoveCoupon")]
-        public async Task<object> RemoveCoupon([FromBody] CartDto cartDto)
-        {
-            try
-            {
-                var cartFromDb = await _db.CartHeaders.FirstAsync(u => u.UserId == cartDto.CartHeader.UserId);
-                cartFromDb.CouponCode = "";
-                _db.CartHeaders.Update(cartFromDb);
-                await _db.SaveChangesAsync();
-                _response.Result = true;
-            }
-            catch (Exception ex)
-            {
-                _response.IsSuccess = false;
-                _response.Message = ex.ToString();
-            }
-            return _response;
-        }
-
-
         [HttpPost("CartUpsert")]
         public async Task<ResponseDto> CartUpsert(CartDto cartDto)
         {
             try
             {
-                var cartHeaderFromDb = await _db.CartHeaders
+                var cartHeaderFromDb = await _db.CartHeaders.AsNoTracking()
                     .FirstOrDefaultAsync(u => u.UserId == cartDto.CartHeader.UserId);
 
-                if (cartHeaderFromDb == null) { 
+                if (cartHeaderFromDb == null)
+                {
                     // create header and details
                     CartHeader cartHeader = _mapper.Map<CartHeader>(cartDto.CartHeader);
                     _db.CartHeaders.Add(cartHeader);
                     await _db.SaveChangesAsync();
 
                     cartDto.CartDetails.First().CartHeaderId = cartHeader.CartHeaderId;
-
                     _db.CartDetails.Add(_mapper.Map<CartDetails>(cartDto.CartDetails.First()));
                     await _db.SaveChangesAsync();
 
@@ -135,13 +95,16 @@ namespace KandyKaffe.Services.ShoppingCartAPI.Controllers
                         .FirstOrDefaultAsync(u => u.ProductId == cartDto.CartDetails
                         .First().ProductId && u.CartHeaderId == cartHeaderFromDb.CartHeaderId);
 
-                    if (carDetailsFromDb == null) {
+                    if (carDetailsFromDb == null)
+                    {
                         //create cartdetails
                         cartDto.CartDetails.First().CartHeaderId = cartHeaderFromDb.CartHeaderId;
                         _db.CartDetails.Add(_mapper.Map<CartDetails>(cartDto.CartDetails.First()));
                         await _db.SaveChangesAsync();
 
-                    } else {
+                    }
+                    else
+                    {
                         //update count in cart details
                         cartDto.CartDetails.First().Count += carDetailsFromDb.Count;
                         cartDto.CartDetails.First().CartHeaderId = carDetailsFromDb.CartHeaderId;
@@ -152,7 +115,7 @@ namespace KandyKaffe.Services.ShoppingCartAPI.Controllers
                     }
                     _response.Result = cartDto;
                 }
-            
+
             }
             catch (Exception ex)
             {
@@ -163,7 +126,7 @@ namespace KandyKaffe.Services.ShoppingCartAPI.Controllers
         }
 
         [HttpPost("RemoveCart")]
-        public async Task<ResponseDto> RemoveCart([FromBody]int cartDetaisId)
+        public async Task<ResponseDto> RemoveCart([FromBody] int cartDetaisId)
         {
             try
             {
@@ -175,7 +138,7 @@ namespace KandyKaffe.Services.ShoppingCartAPI.Controllers
 
                 _db.CartDetails.Remove(cartDetails);
 
-                if(totalCountofCartItem ==1)
+                if (totalCountofCartItem == 1)
                 {
                     var cartHeaderToRemove = await _db.CartHeaders
                         .FirstOrDefaultAsync(u => u.CartHeaderId == cartDetails.CartHeaderId);
@@ -194,5 +157,46 @@ namespace KandyKaffe.Services.ShoppingCartAPI.Controllers
             }
             return _response;
         }
+
+        [HttpPost("ApplyCoupon")]
+        public async Task<object> ApplyCoupon([FromBody] CartDto cartDto)
+        {
+            try
+            {
+                var cartFromDb = await _db.CartHeaders.FirstAsync(u => u.UserId == cartDto.CartHeader.UserId);
+                cartFromDb.CouponCode = cartDto.CartHeader.CouponCode;
+                _db.CartHeaders.Update(cartFromDb);
+                await _db.SaveChangesAsync();
+                _response.Result = true;
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message.ToString();
+            }
+            return _response;
+
+        }
+
+        //[HttpPost("RemoveCoupon")]
+        //public async Task<object> RemoveCoupon([FromBody] CartDto cartDto)
+        //{
+        //    try
+        //    {
+        //        var cartFromDb = await _db.CartHeaders.FirstAsync(u => u.UserId == cartDto.CartHeader.UserId);
+        //        cartFromDb.CouponCode = "";
+        //        _db.CartHeaders.Update(cartFromDb);
+        //        await _db.SaveChangesAsync();
+        //        _response.Result = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _response.IsSuccess = false;
+        //        _response.Message = ex.ToString();
+        //    }
+        //    return _response;
+        //}
+
+
     }
 }
