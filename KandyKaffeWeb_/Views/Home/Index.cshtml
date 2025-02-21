@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<ProductDto>
+
+@section FullWidthSection {
+    <partial name="_HeroSection" />
+}
+
+<!-- Menu Section -->
+<section id="menu" class="menu section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Our Menu</h2>
+        <p><span>Check Our</span> <span class="description-title">KandyKaffe Menu</span></p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+        <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-starters">
+                    <h4>Starters</h4>
+                </a>
+            </li><!-- End tab nav item -->
+
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-breakfast">
+                    <h4>Breakfast</h4>
+                </a><!-- End tab nav item -->
+            </li>
+        </ul>
+
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="tab-pane fade active show" id="menu-starters">
+                <div class="tab-header text-center">
+                    <p>Menu</p>
+                    <h3>Starters</h3>
+                </div>
+
+                <!-- Responsive Grid for Products -->
+                <div class="row gy-4">
+                    @foreach (var product in Model)
+                    {
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <div class="menu-item text-center border p-3 rounded shadow-sm">
+                                <a href="@product.ImageUrl" class="glightbox">
+                                    <img src="@product.ImageUrl" class="menu-img img-fluid rounded" alt="">
+                                </a>
+                                <h4 class="mt-2">@product.Name</h4>
+                                <p class="ingredients">@product.Description</p>
+                                <p class="price text-danger fw-bold">@product.Price.ToString("C")</p>
+                                <a class="btn btn-success w-100" asp-action="ProductDetails" asp-route-productId="@product.ProductId">More</a>
+                            </div>
+                        </div>
+
+                        <!-- End Menu Item -->
+                    }
+                </div><!-- End Row -->
+            </div><!-- End Starter Menu Content -->
+
+        </div><!-- End Tab Content -->
+    </div><!-- End Container -->
+
+</section><!-- /Menu Section -->
+
