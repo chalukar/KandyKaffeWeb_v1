@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using AutoMapper;
+﻿using AutoMapper;
 using KandyKaffe.Services.CouponAPI.Models;
 using KandyKaffe.Services.CouponAPI.Models.Dto;
 
@@ -11,8 +10,8 @@ namespace KandyKaffe.Services.CouponAPI
         {
             var mappingConfig = new MapperConfiguration(config =>
             {
-                config.CreateMap<CouponDto,Coupon>();
-                config.CreateMap<Coupon,CouponDto>();
+                config.CreateMap<CouponDto, Coupon>();
+                config.CreateMap<Coupon, CouponDto>();
             });
             return mappingConfig;
         }
